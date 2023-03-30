@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM VALIDATION</title>
+
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #97B1A6;
+            height: 800px;
+        }
+
+        .f{
+            background-color: #EBBAB9;
+            border: #97B1A6;
+            padding: 20px;
+            width: 400px;
+            height: 450px; 
+            color: #32585C;
+
+        }
+
+        input[type="text"],input[type="password"],input[type="number"]
+        {
+            width: 200px;
+            height: 20px;
+            float: right;
+            border-radius: 5px;
+            border: 1px solid rgb(140, 136, 136);
+            background-color: #C9C5BA;
+            border-color: #698996;
+        }
+        input[type="submit"]{
+            width: 77px;
+            height: 27px;
+            left: 180px;
+        }
+        .label{
+            padding: 10px;
+            text-align: right;
+            font-weight: bold;
+            
+        }
+        .radio{
+            display: flex;
+            display: inline;
+            float: right;
+            
+        }
+        .dropdown{
+            display: flex;
+            width: 200px;
+            height: 25px;
+            border-radius: 5px;
+            float:right;
+            background-color: #C9C5BA;
+            border-color: #698996;
+        }
+        .address{
+            display: flex;
+            float: left;
+            margin-top: 10px;
+            margin-left: 10px;
+            background-color: #C9C5BA;
+            border-color: #698996;        
+        }
+        .button{
+            width: 70px;
+            height: 30px;
+            margin: 10px;
+            border-radius: 5px;
+            border: #97B1A6;
+            background-color: #407076;
+            color: #f5f1e9;
+        }
+    </style>
+
+
+
+<script>
+    function validation()
+    {
+        var a = document.form.name.value;
+        if(a=="")
+        {
+            alert("Please enter your name");
+            document.form.name.focus();
+            return false;
+        }
+        if(!isNaN(a))
+        {
+            alert("Please enter only character");
+            document.form.name.select();
+            return false;
+        }     
+
+        var password = document.form.pass.value;
+        var cpass = document.form.cpass.value;
+        if(pass=='')
+        {
+            alert("Enter Password");
+            document.form.pass.focus();
+            return false;
+        }
+        if(pass.length<8)
+        {
+            alert("Password should have atlease 8 character");
+            document.form.pass.focus();
+            return false;
+        }
+        if(cpass=='')
+        {
+            alert("Enter Confirm Password");
+            document.form.cpass.focus();
+            return false;
+        }
+        if(cpass.length<8)
+        {
+            alert("Password should have atlease 8 character");
+            document.form.cpass.focus();
+            return false;
+        }
+        if(pass!=cpass)
+        {
+            alert("Password and Confirm password should be same");
+            document.form.pass.focus();
+            return false;
+        }
+
+        var rb = document.form.gender;
+        var status = 0;
+        for(var i=0;i<rb.length;i++)
+        {
+            if(rb[i].checked==true)
+            {
+                status=1;
+            }
+        }
+        if(status == 0)
+        {
+            alert("Select the gender");
+            return false;
+        }
+
+        var ck = document.form.branch;
+        var status1 = 0;
+        for(var i=0;i<ck.length;i++)
+        {
+            if(ck[i].checked==true)
+            {
+                status1=1;
+            }
+        }
+        if(status1 == 0)
+        {
+            alert("Select the branch");
+            return false;
+        }
+
+        var course = document.form.course;
+        if(course.selectedIndex==0)
+        {
+            alert("Select your course");
+            return false;
+        }
+
+        var state = document.form.state.value;
+        if(state=="")
+        {
+            alert("Please enter your state");
+            document.form.state.focus();
+            return false;
+        }
+
+        var num = document.form.num.value;
+        if(num=="")
+        {
+            alert("Please enter your number");
+            document.form.num.focus();
+            return false;
+        }
+        if(num.length<10)
+        {
+            alert("10 digits required");
+            document.form.num.focus();
+            return false;
+        }
+        var add = document.form.address.value;
+        if(add=="")
+        {
+            alert("Please enter your address");
+            return false;
+        }
+        return true;
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <h1>Form</h1>
+        <form  name="form" onsubmit="return validation();" action="./new.html" class="f">
+        
+        <div>
+            <label for="name" class="label">User Name </label>
+            <input type="text" id="name" name="name">
+        </div>
+        <br> 
+        <div>
+            <label for="pass" class="label">Password </label>
+            <input type="password" id="pass" name="pass">
+        </div>
+        <br>
+        <div>
+            <label for="cpass" class="label">Confirm Password</label>
+            <input type="password" id="cpass" name="cpass">
+        </div>
+        <br>
+        <div>
+            <label for="gender" class="label">Gender</label>
+            <div class="radio">
+                <input type="radio" id="female" name="gender" value="F">
+                <label for="female">Female</label>
+                <input type="radio" id="male" name="gender" value="M">
+                <label for="male">Male</label>
+                <input type="radio" id="others" name="gender" value="O">
+                <label for="others">Others</label>
+            </div>
+
+        </div>
+        <br>
+        <div>
+            <label for="branch" class="label">Branch</label>
+            <div class="radio">
+                <input type="checkbox" id="ai" name="branch" value="AI">
+                <label for="ai">AI</label>
+                <input type="checkbox" id="cse" name="branch" value="CSE">
+                <label for="cse">CSE</label>
+                <input type="checkbox" id="csd" name="branch" value="CSD">
+                <label for="csd">CSD</label>
+                <input type="checkbox" id="it" name="branch" value="IT">
+                <label for="it">IT</label>
+            </div>
+
+        </div>
+        <br>
+        <div>
+            <label for="course" class="label">Courses:</label>
+
+            <select name="course" id="course" class="dropdown">
+              <option value="none"></option>
+              <option value="WT">Web Technology</option>
+              <option value="OS">Operating Systems</option>
+              <option value="Java">JavaScript</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="state" class="label">State</label>
+            <input type="text" id="state" name="state">
+        </div>
+      
+        <br>
+        <div>
+            <label for="num" class="label">Contact Number</label>
+            <input type="number" id="num" name="num">
+        </div>
+        <br>
+        <div>
+            <label for="address" class="label">Address</label>
+            <br>
+            <textarea id="address" name="address" rows="4" cols="45" class="address"></textarea>
+        </div>
+
+        <input type="submit" name="submit" value="submit" class="button">
+        <input type="reset" name="reset" value="reset" class="button">
+        
+        </form>
+    </div>
+    
+</body>
+</html>
